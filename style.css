@@ -1,0 +1,251 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    overflow: hidden;
+}
+
+.startScreen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('./images/GHOSTRUNNER.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: all 0.5s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+.startScreen button {
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: rgb(154, 189, 118);
+    box-shadow: 0 0 50px green;
+    border: none;
+    border-radius: 8px;
+    max-width: 50%;
+}
+
+.gameover {
+    color: white;
+    font-size: 50px;
+    animation: fallDown 1s ease forwards;
+    display: none;
+    position: absolute;
+    top: 110px;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 4px black;
+}
+
+@keyframes fallDown {
+    0% {
+    transform: translateY(-200px);
+    opacity: 0;
+    }
+    100% {
+    transform: translateY(0);
+    opacity: 1;
+    }
+}
+
+.container {
+    background-image: url(./images/bg.png);
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+
+.dino {
+    background-image: url(./images/dino.png);
+    background-size: cover;
+    height: 125px;
+    width: 114px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    transition: bottom 0.2s ease-in-out;
+}
+
+.animateDino {
+    animation: jump 0.7s ease-out;
+}
+
+@keyframes jump {
+    0% {
+    bottom: 97px;
+    }
+    50% {
+    bottom: 400px;
+    }
+    100% {
+    bottom: 97px;
+    }
+}
+
+.obstacle {
+    background-image: url(./images/obstacle.png);
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.obstacleani {
+    animation: moveObstacle 4s linear infinite;
+}
+
+@keyframes moveObstacle {
+    0% {
+    left: 100%;
+    }
+    100% {
+    left: -10%;
+    }
+}
+
+.gameOverScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    display: none;
+}
+
+.restartBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    font-size: 18px;
+    background-color: rgb(207, 173, 230);
+    border: 2px solid black;
+}
+
+.lives {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.life {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(247, 71, 71);
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff4d4d;
+}
+
+#musicToggle {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    margin: 15px;
+    left: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border: none;
+    backdrop-filter: blur(5px);
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+#controlsToggle {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    margin: 15px;
+    top: 50px; 
+    left: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border: none;
+    backdrop-filter: blur(5px);
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+.controls {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    z-index: 10;
+}
+
+.cntrlbtn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.cntrlbtn:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .controls {
+        display: flex;
+    }
+
+    .cntrlbtn {
+        font-size: 24px;
+        padding: 8px 16px;
+    }
+
+    #score {
+        font-size: 16px;
+        padding: 8px;
+    }
+}
